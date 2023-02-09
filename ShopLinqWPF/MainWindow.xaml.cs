@@ -125,6 +125,48 @@ namespace ShopLinqWPF
                 }
             }
 
+            // Category Filter and Price Filter together
+            if (!string.IsNullOrWhiteSpace(CategoryFilter.Text) && !string.IsNullOrWhiteSpace(PriceFrom.Text)
+                && !string.IsNullOrWhiteSpace(PriceTo.Text))
+            {
+                // Если PriceFrom и PriceTo распарсились удачно
+                if (int.TryParse(PriceFrom.Text, out int priceFrom) && int.TryParse(PriceTo.Text, out int priceTo))
+                {
+                    // Проверка на соответствие цен
+                    if (priceFrom > priceTo || priceFrom < 0)
+                    {
+                        MessageBox.Show("Wrong price", "Error", MessageBoxButton.OK);
+                        PriceFrom.Text = "";
+                        PriceTo.Text = "";
+                    }
+                    else
+                    {
+                        // Создание листа продуктов с соответствующей категорией и ценой
+                        var newProducts = from product in (from item in products
+                                                           where item.Category == CategoryFilter.Text
+                                                           select item)
+                                          where product.Price >= priceFrom && product.Price <= priceTo
+                                          select product;
+                        // Очищение ProductListBox
+                        ProductListBox.Items.Clear();
+
+                        // Вывод сообщения в ListBox, если товар не найден
+                        // Или заполение созданным списком продуктов c соответствующей ценой
+                        if (newProducts.Count() == 0)
+                            ProductListBox.Items.Add("Nothing found");
+                        else
+                            foreach (var item in newProducts)
+                                ProductListBox.Items.Add(item);
+                    }
+                }
+                else  // Если PriceFrom и/или PriceTo не распарсились
+                {
+                    MessageBox.Show("Wrong price", "Error", MessageBoxButton.OK);
+                    PriceFrom.Text = "";
+                    PriceTo.Text = "";
+                }
+            }
+
             // добавить еще другие комбинации заполнения фильтров
         }
     }
