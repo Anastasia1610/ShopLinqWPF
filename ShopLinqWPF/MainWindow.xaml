@@ -27,17 +27,17 @@
 
             <TextBlock Text="Filters:" Margin="10,20,10,10" Foreground="White" FontSize="20"/>
             <TextBlock Text="By category" Margin="10,0" Foreground="Gray" FontWeight="Bold" FontSize="14"/>
-            <TextBox Margin="10"/>
+            <TextBox Name="CategoryFilter" Margin="10"/>
             <TextBlock Text="By price" Margin="10,0" Foreground="Gray" FontWeight="Bold" FontSize="14"/>
             <WrapPanel Margin="10">
                 <TextBlock Text="from" Foreground="Gray" FontWeight="Bold" FontSize="14"/>
-                <TextBox Width="30" Margin="5,0,20,0"/>
+                <TextBox Name="PriceFrom" Width="30" Margin="5,0,20,0"/>
             </WrapPanel>
             <WrapPanel Margin="10,0">
                 <TextBlock Text="to     " Foreground="Gray" FontWeight="Bold" FontSize="14"/>
-                <TextBox Width="30" Margin="5,0,20,0"/>
+                <TextBox Name="PriceTo" Width="30" Margin="5,0,20,0"/>
             </WrapPanel>
-            <Button Content="apply" HorizontalAlignment="Center" Margin="10"/>
+            <Button Name="ApplyButton" Content="apply" HorizontalAlignment="Center" Margin="10" Click="ApplyButton_Click"/>
             <Button Content="Show all" Margin="10,20"/>
         </StackPanel>
 
