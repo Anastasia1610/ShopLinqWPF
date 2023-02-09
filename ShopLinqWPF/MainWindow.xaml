@@ -45,7 +45,7 @@
         </StackPanel>
 
         <TextBlock Text="Cart" Margin="20" Foreground="White" FontSize="20" Grid.Column="2" VerticalAlignment="Top"/>
-        <ListBox Name="CartListBox" Height="130" Margin="20, 60, 20, 0" VerticalAlignment="Top" Grid.Column="2"/>
-        <Button Content="delete" Width="50" Height="20" Grid.Column="2" VerticalAlignment="Center"/>
+        <ListBox Name="CartListBox" SelectionMode="Single" Height="130" Margin="20, 60, 20, 0" VerticalAlignment="Top" Grid.Column="2"/>
+        <Button Name="DeleteFromCartButton" Content="delete" Width="50" Height="20" Grid.Column="2" VerticalAlignment="Center" Click="DeleteFromCartButton_Click"/>
     </Grid>
 </Window>

@@ -206,5 +206,13 @@ namespace ShopLinqWPF
             }
             
         }
+
+        private void DeleteFromCartButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(CartListBox.SelectedItem != null)
+            {
+                CartListBox.Items.Remove(CartListBox.SelectedItem); 
+            }
+        }
     }
 }
