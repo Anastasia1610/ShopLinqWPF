@@ -196,6 +196,15 @@ namespace ShopLinqWPF
             }
         }
 
-        
+        private void AddToCart_Click(object sender, RoutedEventArgs e)
+        {
+            if(ProductListBox.SelectedItem != null)
+            {
+                Product cartProduct = (Product)ProductListBox.SelectedItem;
+
+                CartListBox.Items.Add(cartProduct); 
+            }
+            
+        }
     }
 }
