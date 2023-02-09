@@ -16,10 +16,13 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
- 
-        <TextBlock Text="Products" Margin="20" FontSize="20" Foreground="White"/>
-        <ListBox Name="ProductListBox" Height="250" Margin="20, 60, 20, 0" VerticalAlignment="Top"/>
 
+        <StackPanel>
+            <TextBlock Text="Products" Margin="20" FontSize="20" Foreground="White"/>
+            <ListBox Name="ProductListBox" Height="250" Margin="20, 0" VerticalAlignment="Top"/>
+            <Button Name="AddToCart" Content="Add to cart" Width="100" Margin="20"/>
+        </StackPanel>
+       
         <StackPanel Grid.Column="1">
             <TextBlock Text="Name search:" Margin="10,20" Foreground="White" FontSize="20"/>
             <TextBox Margin="10,0"/>
