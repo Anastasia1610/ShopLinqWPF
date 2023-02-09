@@ -178,5 +178,24 @@ namespace ShopLinqWPF
                 ProductListBox.Items.Add(item);
             }
         }
+
+        private void NameSearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(!string.IsNullOrWhiteSpace(NameSearchTextBox.Text))
+            {
+                var newProducts = from product in products
+                                  where product.Name.ToLower() == NameSearchTextBox.Text.ToLower()
+                                  select product;
+
+                ProductListBox.Items.Clear();
+
+                foreach (var item in newProducts)
+                {
+                    ProductListBox.Items.Add(item);
+                }
+            }
+        }
+
+        
     }
 }
