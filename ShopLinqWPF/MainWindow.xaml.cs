@@ -75,7 +75,6 @@ namespace ShopLinqWPF
                 ProductListBox.Items.Clear();
                 // Заполение созданным списком продуктов выбранной категории
                 foreach (var item in newProducts)
-                {
                     ProductListBox.Items.Add(item);
                 }
             }
