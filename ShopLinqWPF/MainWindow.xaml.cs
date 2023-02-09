@@ -40,8 +40,8 @@ namespace ShopLinqWPF
         new Product("Salmon", "Seafood", 600), new Product("Herring", "Seafood", 80), new Product("Salmon", "Seafood", 600),
         new Product("Shrimp", "Seafood", 350), new Product("Rice", "Grains", 60), new Product("Buckwheat", "Grains", 35),
         new Product("Beans", "Grains", 70), new Product("Cake", "Sweets", 300), new Product("Candies", "Sweets", 110),
-        new Product("Coockies", "Sweets", 80), new Product("Marshmello", "Sweets", 65), new Product("Chocolate", "Sweets", 150)}; 
-        
+        new Product("Coockies", "Sweets", 80), new Product("Marshmello", "Sweets", 65), new Product("Chocolate", "Sweets", 150)};
+
         class Product
         {
             public Product(string name, string category, int price)
@@ -52,7 +52,7 @@ namespace ShopLinqWPF
             }
 
             public string Name { get; set; }
-            public string Category { get; set; } 
+            public string Category { get; set; }
             public int Price { get; set; }
 
             public override string ToString()
@@ -64,7 +64,8 @@ namespace ShopLinqWPF
         private void ApplyButton_Click(object sender, RoutedEventArgs e)
         {
             // Category Filter
-            if(!string.IsNullOrWhiteSpace(CategoryFilter.Text) && string.IsNullOrWhiteSpace(PriceFrom.Text) 
+            // Если заполнен только TextBox Category, а PriceFrom и PriceTo пустые
+            if (!string.IsNullOrWhiteSpace(CategoryFilter.Text) && string.IsNullOrWhiteSpace(PriceFrom.Text)
                 && string.IsNullOrWhiteSpace(PriceTo.Text))
             {
                 // Создание листа продуктов выбранной категории
@@ -73,11 +74,58 @@ namespace ShopLinqWPF
                                   select product;
                 // Очищение ProductListBox
                 ProductListBox.Items.Clear();
-                // Заполение созданным списком продуктов выбранной категории
-                foreach (var item in newProducts)
-                    ProductListBox.Items.Add(item);
+
+                // Вывод сообщения в ListBox, если товар не найден
+                // Или заполение созданным списком продуктов выбранной категории
+                if (newProducts.Count() == 0)
+                    ProductListBox.Items.Add("Nothing found");
+                else  
+                    foreach (var item in newProducts)
+                        ProductListBox.Items.Add(item);
+            }
+
+            // Price Filter
+            // Если TextBox Category пустой, а заполнены только PriceFrom и PriceTo
+            if (string.IsNullOrWhiteSpace(CategoryFilter.Text) && !string.IsNullOrWhiteSpace(PriceFrom.Text)
+                && !string.IsNullOrWhiteSpace(PriceTo.Text))
+            {
+                // Если PriceFrom и PriceTo распарсились удачно
+                if (int.TryParse(PriceFrom.Text, out int priceFrom) && int.TryParse(PriceTo.Text, out int priceTo))
+                {
+                    // Проверка на соответствие цен
+                    if(priceFrom > priceTo || priceFrom < 0)
+                    {
+                        MessageBox.Show("Wrong price", "Error", MessageBoxButton.OK);
+                        PriceFrom.Text = "";
+                        PriceTo.Text = "";
+                    }
+                    else
+                    {
+                        // Создание листа продуктов с соответствующей ценой
+                        var newProducts = from product in products
+                                          where product.Price >= priceFrom && product.Price <= priceTo
+                                          select product;
+                        // Очищение ProductListBox
+                        ProductListBox.Items.Clear();
+
+                        // Вывод сообщения в ListBox, если товар не найден
+                        // Или заполение созданным списком продуктов c соответствующей ценой
+                        if (newProducts.Count() == 0)
+                            ProductListBox.Items.Add("Nothing found");
+                        else
+                            foreach (var item in newProducts)
+                                ProductListBox.Items.Add(item);
+                    }
+                }
+                else  // Если PriceFrom и/или PriceTo не распарсились
+                {
+                    MessageBox.Show("Wrong price", "Error", MessageBoxButton.OK);
+                    PriceFrom.Text = "";
+                    PriceTo.Text = "";
                 }
             }
+
+            // добавить еще другие комбинации заполнения фильтров
         }
     }
 }
