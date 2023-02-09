@@ -16,9 +16,9 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-
+ 
         <TextBlock Text="Products" Margin="20" FontSize="20" Foreground="White"/>
-        <ListBox Height="250" Margin="20, 60, 20, 0" VerticalAlignment="Top"/>
+        <ListBox Name="ProductListBox" Height="250" Margin="20, 60, 20, 0" VerticalAlignment="Top"/>
 
         <StackPanel Grid.Column="1">
             <TextBlock Text="Name search:" Margin="10,20" Foreground="White" FontSize="20"/>
