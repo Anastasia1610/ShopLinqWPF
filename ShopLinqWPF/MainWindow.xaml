@@ -41,7 +41,7 @@
                 <TextBox Name="PriceTo" Width="30" Margin="5,0,20,0"/>
             </WrapPanel>
             <Button Name="ApplyButton" Content="apply" HorizontalAlignment="Center" Margin="10" Click="ApplyButton_Click"/>
-            <Button Content="Show all" Margin="10,20"/>
+            <Button Name="ShowAllButton" Content="Show all" Margin="10,20" Click="ShowAllButton_Click"/>
         </StackPanel>
 
         <TextBlock Text="Cart" Margin="20" Foreground="White" FontSize="20" Grid.Column="2" VerticalAlignment="Top"/>

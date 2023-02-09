@@ -169,5 +169,14 @@ namespace ShopLinqWPF
 
             // добавить еще другие комбинации заполнения фильтров
         }
+
+        private void ShowAllButton_Click(object sender, RoutedEventArgs e)
+        {
+            ProductListBox.Items.Clear(); 
+            foreach (var item in products)
+            {
+                ProductListBox.Items.Add(item);
+            }
+        }
     }
 }
