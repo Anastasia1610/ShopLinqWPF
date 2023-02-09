@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="cart1.png" />
+    <None Remove="Shop.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="cart1.png" />
+    <Resource Include="Shop.jpg" />
+  </ItemGroup>
+
+</Project>
