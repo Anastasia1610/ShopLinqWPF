@@ -70,7 +70,7 @@ namespace ShopLinqWPF
             {
                 // Создание листа продуктов выбранной категории
                 var newProducts = from product in products
-                                  where product.Category == CategoryFilter.Text
+                                  where product.Category.ToLower() == CategoryFilter.Text.ToLower()
                                   select product;
                 // Очищение ProductListBox
                 ProductListBox.Items.Clear();
@@ -143,7 +143,7 @@ namespace ShopLinqWPF
                     {
                         // Создание листа продуктов с соответствующей категорией и ценой
                         var newProducts = from product in (from item in products
-                                                           where item.Category == CategoryFilter.Text
+                                                           where item.Category.ToLower() == CategoryFilter.Text.ToLower()
                                                            select item)
                                           where product.Price >= priceFrom && product.Price <= priceTo
                                           select product;
